@@ -1,0 +1,41 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env / secrets
+.env
+.env.local
+.env.production
+*.pem
+*.key
+
+# Generated PDFs (originals are managed at D:\仕様書-説明書\, source-of-truth is .docx)
+docs/pdf/*.pdf
+
+# RAG embeddings (auto-generated)
+docs-index/*.json
+
+# Logs
+logs/
+*.log
+
+# Runtime data
+sessions/
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Docker
+.docker/

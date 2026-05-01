@@ -1,0 +1,79 @@
+:root {
+  --bg: #f5f7fa;
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --admin: #b45309;
+  --ok: #16a34a;
+  --ng: #dc2626;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", sans-serif; color: var(--fg); background: var(--bg); }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Login ===== */
+.login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 16px; }
+.login-card { width: 100%; max-width: 420px; background: var(--card-bg); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
+.login-card h1 { margin: 0 0 4px; font-size: 22px; }
+.login-card .subtitle { color: var(--muted); margin: 0 0 24px; font-size: 14px; }
+.login-card form label { display: block; margin-bottom: 16px; }
+.login-card label span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+.login-card input { width: 100%; padding: 10px 12px; font-size: 16px; border: 1px solid var(--border); border-radius: 6px; }
+.login-card button { width: 100%; padding: 12px; font-size: 16px; background: var(--primary); color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+.login-card button:hover { background: var(--primary-dark); }
+.login-page.admin .login-card button { background: var(--admin); }
+.login-card .error { color: var(--ng); font-size: 13px; margin-top: 12px; }
+.login-card .back-link { text-align: center; font-size: 13px; margin-top: 16px; }
+
+/* ===== Tree ===== */
+.tree-page header { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: var(--card-bg); border-bottom: 1px solid var(--border); }
+.tree-page header h1 { margin: 0; font-size: 18px; }
+.tree-page header .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; background: var(--admin); color: #fff; margin-left: 8px; vertical-align: middle; }
+.tree-page nav { display: flex; gap: 8px; align-items: center; }
+.tree-page nav .admin-btn { padding: 6px 14px; background: var(--admin); color: #fff; border-radius: 6px; }
+.tree-page nav .admin-btn:hover { text-decoration: none; opacity: 0.9; }
+.tree-page nav button { padding: 6px 14px; background: transparent; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; }
+.tree-page main { max-width: 1100px; margin: 0 auto; padding: 24px; }
+.tree-page section { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+.tree-page section h2 { margin: 0 0 16px; font-size: 16px; }
+
+.apps-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.app-card { display: block; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); transition: box-shadow 0.15s; }
+.app-card:hover { box-shadow: var(--shadow); text-decoration: none; }
+.app-card .icon { font-size: 28px; }
+.app-card .name { font-weight: 600; font-size: 16px; margin: 6px 0 2px; color: var(--fg); }
+.app-card .desc { font-size: 13px; color: var(--muted); }
+.app-card .health { display: inline-block; margin-top: 8px; font-size: 12px; padding: 2px 8px; border-radius: 999px; }
+.app-card .health.up { background: #dcfce7; color: var(--ok); }
+.app-card .health.down { background: #fee2e2; color: var(--ng); }
+.app-card .health.checking { background: #f3f4f6; color: var(--muted); }
+
+.docs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; }
+.docs-toolbar input { flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
+.docs-toolbar button { padding: 8px 16px; background: var(--primary); color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+
+.rag-results { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.rag-result { padding: 12px; border: 1px solid var(--border); border-radius: 6px; background: #fafafa; }
+.rag-result .source { font-size: 12px; color: var(--muted); }
+.rag-result .excerpt { font-size: 13px; margin-top: 4px; white-space: pre-wrap; }
+.rag-result .open-btn { margin-top: 6px; font-size: 12px; padding: 4px 10px; background: var(--primary); color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
+
+.docs-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.doc-chip { padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; cursor: pointer; background: #fafafa; font-size: 13px; }
+.doc-chip:hover { background: #f0f0f0; }
+.doc-chip.admin { border-color: var(--admin); color: var(--admin); }
+
+.pdf-viewer { margin-top: 16px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.pdf-toolbar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #f3f4f6; }
+.pdf-toolbar button { padding: 4px 10px; cursor: pointer; }
+.pdf-viewer iframe { width: 100%; height: 70vh; border: 0; display: block; }
+
+/* DL 抑止のヒント */
+.pdf-viewer iframe { user-select: none; -webkit-user-select: none; }

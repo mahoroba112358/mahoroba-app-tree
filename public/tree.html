@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mahoroba-app-tree | ツリー</title>
+<link rel="stylesheet" href="/static/css/common.css" />
+</head>
+<body class="tree-page">
+  <header>
+    <h1>mahoroba-app-tree</h1>
+    <nav>
+      <a href="/admin/login" class="admin-btn">管理者ログイン</a>
+      <button id="logoutBtn" type="button">ログアウト</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="appsSection">
+      <h2>アプリ一覧</h2>
+      <div id="appsGrid" class="apps-grid"></div>
+    </section>
+
+    <section id="docsSection">
+      <h2>説明書</h2>
+      <div class="docs-toolbar">
+        <input type="search" id="ragQuery" placeholder="説明書から検索（例: 夕食の入力方法）" maxlength="200" />
+        <button id="ragSearchBtn" type="button">検索</button>
+      </div>
+      <div id="ragResults" class="rag-results"></div>
+      <div id="docsList" class="docs-list"></div>
+      <div id="pdfViewer" class="pdf-viewer" hidden>
+        <div class="pdf-toolbar">
+          <span id="pdfTitle"></span>
+          <button id="pdfClose" type="button">閉じる</button>
+        </div>
+        <iframe id="pdfFrame" title="PDF Viewer"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/tree.js" defer></script>
+</body>
+</html>

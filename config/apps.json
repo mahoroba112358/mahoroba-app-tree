@@ -1,0 +1,33 @@
+{
+  "_comment": "接続先アプリ一覧。新アプリ追加時はここに 1 エントリ追加するだけ。NODE_ENV で local/production を切替。",
+  "env": {
+    "local": {
+      "mahoroba-hub": "http://localhost:3000",
+      "mahoroba-app": "http://localhost:3001",
+      "mahoroba-app-tree": "http://localhost:3002"
+    },
+    "production": {
+      "mahoroba-hub": "https://mahoroba-hub.example.ts.net",
+      "mahoroba-app": "https://mahoroba-app.example.ts.net",
+      "mahoroba-app-tree": "https://mahoroba-app-tree.example.ts.net"
+    }
+  },
+  "apps": [
+    {
+      "id": "mahoroba-hub",
+      "name": "帰省旅費計算",
+      "icon": "✈️",
+      "description": "経路・距離に基づく帰省旅費手当の自動計算",
+      "healthPath": "/api/health",
+      "visibility": "all"
+    },
+    {
+      "id": "mahoroba-app",
+      "name": "食事・宿舎管理",
+      "icon": "🍱",
+      "description": "夕食可否・宿泊入力、月次 Excel 出力",
+      "healthPath": "/api/health",
+      "visibility": "all"
+    }
+  ]
+}

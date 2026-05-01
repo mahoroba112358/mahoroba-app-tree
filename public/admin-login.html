@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mahoroba-app-tree | 管理者ログイン</title>
+<link rel="stylesheet" href="/static/css/common.css" />
+</head>
+<body class="login-page admin">
+  <main class="login-card">
+    <h1>管理者ログイン</h1>
+    <p class="subtitle">mahoroba-app の管理者 ID/パスワードを入力</p>
+    <form id="adminLoginForm" autocomplete="off">
+      <label>
+        <span>社員 ID</span>
+        <input type="text" id="employeeId" name="employeeId" required maxlength="32" />
+      </label>
+      <label>
+        <span>パスワード</span>
+        <input type="password" id="adminPass" name="password" required maxlength="128" />
+      </label>
+      <button type="submit">管理者としてログイン</button>
+      <p id="errorMsg" class="error" hidden></p>
+      <p class="back-link"><a href="/tree">← 一般ツリーへ戻る</a></p>
+    </form>
+  </main>
+  <script src="/static/js/admin-login.js" defer></script>
+</body>
+</html>
