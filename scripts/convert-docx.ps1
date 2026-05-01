@@ -1,31 +1,32 @@
 # scripts/convert-docx.ps1
-# D:\仕様書-説明書\*.docx を mahoroba-app-tree/docs/pdf/*.pdf に変換
-# 利用: npm run convert-docs（package.json から呼び出し）
-# 前提: Microsoft Word がローカルにインストールされていること
+# Convert D:\仕様書-説明書\*.docx to mahoroba-app-tree/docs/pdf/*.pdf
+# Usage: npm run convert-docs (called from package.json)
+# Requires: Microsoft Word (uses Word COM automation)
 
 $ErrorActionPreference = 'Stop'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-$Source = 'D:\仕様書-説明書'
+$Source = 'D:\' + [char]0x4ED5 + [char]0x69D8 + [char]0x66F8 + '-' + [char]0x8AAC + [char]0x660E + [char]0x66F8
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $Project = Split-Path -Parent $ScriptDir
 $DestDir = Join-Path $Project 'docs\pdf'
 
-if (-not (Test-Path $Source)) {
-    Write-Error "ソースフォルダが存在しません: $Source"
+if (-not (Test-Path -LiteralPath $Source)) {
+    Write-Error ('Source folder not found: ' + $Source)
     exit 1
 }
 
-if (-not (Test-Path $DestDir)) {
+if (-not (Test-Path -LiteralPath $DestDir)) {
     New-Item -ItemType Directory -Force -Path $DestDir | Out-Null
 }
 
-$DocxFiles = Get-ChildItem -Path $Source -Filter '*.docx' -File
+$DocxFiles = Get-ChildItem -LiteralPath $Source -Filter '*.docx' -File
 if ($DocxFiles.Count -eq 0) {
-    Write-Host '変換対象の .docx が見つかりません。'
+    Write-Host 'No .docx files found.'
     exit 0
 }
 
-Write-Host ("変換対象: {0} ファイル" -f $DocxFiles.Count)
+Write-Host ('Files to convert: ' + $DocxFiles.Count)
 
 $Word = $null
 try {
@@ -37,18 +38,20 @@ try {
         $PdfName = [System.IO.Path]::ChangeExtension($Docx.Name, '.pdf')
         $PdfPath = Join-Path $DestDir $PdfName
 
-        Write-Host ("  -> {0}" -f $PdfName)
+        Write-Host ('  -> ' + $PdfName)
 
-        $Doc = $Word.Documents.Open($Docx.FullName, $false, $true)  # ConfirmConversions, ReadOnly
+        $Doc = $Word.Documents.Open($Docx.FullName, $false, $true)
         try {
-            $Doc.SaveAs([ref]$PdfPath, [ref]17)  # 17 = wdFormatPDF
+            # Use ExportAsFixedFormat (more reliable than SaveAs for PDF in PS 5.1)
+            # ExportFormat 17 = wdExportFormatPDF
+            $Doc.ExportAsFixedFormat($PdfPath, 17)
         }
         finally {
             $Doc.Close($false)
         }
     }
 
-    Write-Host ('変換完了: {0}' -f $DestDir)
+    Write-Host ('Done. Output: ' + $DestDir)
 }
 finally {
     if ($Word) {
