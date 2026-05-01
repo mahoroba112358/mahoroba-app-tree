@@ -5,6 +5,12 @@
 ## [Unreleased]
 
 ### Added
+- `package-lock.json` 生成（`npm install` 完了、238 packages）
+- ローカル起動検証完了（共通ログイン → /tree → /api/apps/ までエンドツーエンド動作確認）
+
+## [0.1.0] - 2026-05-01
+
+### Added
 - リポジトリ初期化、ディレクトリ構成
 - 設計書 `docs/design/architecture.md`
 - セキュリティ実装リスト `docs/design/security-checklist.md`（IPA 準拠 11 カテゴリ・60+ 項目）
